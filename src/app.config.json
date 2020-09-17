@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://hf13my6045.execute-api.us-east-1.amazonaws.com/dev/api/v1",
+  "baseUrlCors": "https://cors-anywhere.herokuapp.com/https://hf13my6045.execute-api.us-east-1.amazonaws.com/dev/api/v1"
+}
