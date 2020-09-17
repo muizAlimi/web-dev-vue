@@ -1,30 +1,34 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import CreatePolicy from "../views/CreatePolicy.vue";
-import Finish from "../views/Finish.vue";
-import StoreUtils from "../utils/BaseUtils/StoreUtils";
+import Login from "../views/auth/Login";
+import Dashboard from "../views/Dashboard";
+import Registration from "../views/auth/Registration";
+
+import Expense from "../views/expense/Expense";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/create-policy/:requestId/:categoryId/:insuranceCompanyId/:username",
-    name: "create-policy",
-    component: CreatePolicy,
-    beforeEnter(to, from, next) {
-      StoreUtils.commit("auth/SET_USER_OPTIONS", {
-        requestId: to.params.requestId,
-        categoryId: to.params.categoryId,
-        insuranceCompanyId: to.params.insuranceCompanyId,
-        username: to.params.username
-      });
-      next();
-    }
+    path: "/expense",
+    name: "expense",
+    component: Expense
   },
   {
-    path: "/finish",
-    name: "finish",
-    component: Finish
+    path: "/dashboard",
+    name: "dashboard",
+    component: Dashboard
+  },
+  {
+    path: "/registration",
+    name: "registration",
+    component: Registration
+  },
+
+  {
+    path: "/",
+    name: "login",
+    component: Login
   }
 ];
 

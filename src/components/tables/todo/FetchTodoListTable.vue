@@ -119,7 +119,7 @@
 
 <script>
 import { mapState } from "vuex";
-import StoreUtils from "../../utils/BaseUtils/StoreUtils";
+import StoreUtils from "../../../utils/BaseUtils/StoreUtils";
 
 export default {
   name: "FetchTodoListTable",

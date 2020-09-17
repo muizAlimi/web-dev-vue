@@ -1,9 +1,9 @@
-import ExpenseService from "../../services/ExpenseService";
+import TodoService from "../../services/TodoService";
 import LoaderUtils from "../../utils/BaseUtils/LoaderUtils";
 import StoreUtils from "../../utils/BaseUtils/StoreUtils";
 import RouterUtils from "../../utils/BaseUtils/RouterUtils";
 
-const expenseService = new ExpenseService();
+const todoService = new TodoService();
 
 export const namespaced = true;
 
@@ -22,23 +22,21 @@ export const mutations = {
 };
 
 export const actions = {
-  fetchExpense() {
-    let payload = {
-      email: StoreUtils.rootGetters("user/getUserEmail")
-    };
+  fetchTodoList() {
+    let payload = {};
 
     let successAction = responseData => {
-      StoreUtils.commit("table/SET_TABLE_DATA", responseData.expense);
+      StoreUtils.commit("table/SET_TABLE_DATA", responseData);
       let loaderType = LoaderUtils.types.TABLE;
     };
 
-    expenseService.fetchExpense(
+    todoService.fetchTodoList(
       payload,
       successAction,
       LoaderUtils.types.BLOCKING
     );
   },
-  createExpense() {
+  deleteTodo() {
     let formBody = StoreUtils.rootGetters(
       StoreUtils.getters.form.GET_FORM_BODY
     );
@@ -57,7 +55,7 @@ export const actions = {
       RouterUtils.changeRouteTo(RouterUtils.routes.DASHBOARD);
     };
 
-    expenseService.createExpense(
+    todoService.fetchTodoList(
       payload,
       successAction,
       LoaderUtils.types.BLOCKING

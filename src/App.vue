@@ -1,32 +1,50 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <NotificationContainer />
+    <Loading v-if="loader.blockingLoader" />
+    <transition name="slide-fade" mode="out-in">
+      <router-view :key="$route.fullPath" />
+    </transition>
   </div>
 </template>
 
+<script>
+  import { mapState } from "vuex";
+  import NotificationContainer from "./components/Utility/Notification/NotificationContainer";
+  import Loading from "./components/Utility/Loading";
+
+  export default {
+    name: "app",
+    components: {
+      NotificationContainer,
+      Loading
+    },
+    computed: {
+      ...mapState(["loader"])
+    }
+  };
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  a {
+    cursor: pointer;
+  }
+  .slide-fade-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .slide-fade-enter-to {
+  }
+  .slide-fade-enter-active {
+    transition: all 0.3s ease;
+  }
+  .slide-fade-leave {
+  }
+  .slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .slide-fade-leave-active {
+    transition: all 0.3s ease;
+  }
 </style>

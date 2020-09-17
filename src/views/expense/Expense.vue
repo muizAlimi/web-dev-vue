@@ -1,13 +1,15 @@
 <template>
-    $END$
+  <div class="jumbotron">
+    <CreateExpenseForm></CreateExpenseForm>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "Expense"
-    }
+import CreateExpenseForm from "../../components/Forms/expense/CreateExpenseForm";
+export default {
+  name: "Expense",
+  components: { CreateExpenseForm }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

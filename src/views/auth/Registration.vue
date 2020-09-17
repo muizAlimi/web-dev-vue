@@ -1,13 +1,15 @@
 <template>
-    $END$
+  <div>
+    <RegistrationFormStage/>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "Registration"
-    }
+import RegistrationFormStage from "../../components/formStages/auth/RegistrationFormStage";
+export default {
+  name: "Registration",
+  components: {RegistrationFormStage}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

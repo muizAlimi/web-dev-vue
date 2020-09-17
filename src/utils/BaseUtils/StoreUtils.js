@@ -38,7 +38,14 @@ class StoreUtils {
     },
     auth: {},
     user: {
-      GET_USER_EMAIL: "userAccount/getUserEmail"
+      GET_USER_EMAIL: "userAccount/getUserEmail",
+      GET_USER_REG_PAYLOAD: "user/getUserRegPayload"
+    },
+    form: {
+      GET_FORM_BODY: "form/getFormBody"
+    },
+    table: {
+      GET_TABLE_DATA: "table/getTableData"
     }
   };
 

@@ -1,13 +1,15 @@
 <template>
-  <p class="text-center p-t-2">
-    <span>
-      <div class="loadingio-spinner-eclipse-z90i8rl0ztb">
-        <div class="ldio-6k4iqxk5wr7">
-          <div></div>
+  <transition name="slide-fade" mode="out-in">
+    <div class="app-loading">
+      <div id="preloader">
+        <div class="sk-three-bounce">
+          <div class="sk-child sk-bounce1"></div>
+          <div class="sk-child sk-bounce2"></div>
+          <div class="sk-child sk-bounce3"></div>
         </div>
       </div>
-    </span>
-  </p>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -17,49 +19,70 @@ export default {
 </script>
 
 <style scoped>
-p {
-  background-color: transparent;
-  transition: 0.5s all ease-in-out;
-}
-
-@keyframes ldio-6k4iqxk5wr7 {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.ldio-6k4iqxk5wr7 div {
-  position: absolute;
-  animation: ldio-6k4iqxk5wr7 0.8s linear infinite;
-  width: 54px;
-  height: 54px;
-  top: 23px;
-  left: 23px;
-  border-radius: 50%;
-  box-shadow: 0 2.3px 0 0 #0f5346;
-  transform-origin: 27px 28.15px;
-}
-.loadingio-spinner-eclipse-z90i8rl0ztb {
-  width: 60px;
-  height: 60px;
-  display: inline-block;
-  overflow: hidden;
-  background: transparent;
-}
-.ldio-6k4iqxk5wr7 {
+#preloader {
+  position: fixed;
   width: 100%;
   height: 100%;
-  position: relative;
-  transform: translateZ(0) scale(0.6);
-  backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 999999999;
 }
-.ldio-6k4iqxk5wr7 div {
-  box-sizing: content-box;
+
+.sk-three-bounce {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: white;
+}
+
+.sk-three-bounce .sk-child {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: #ca5152;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+  animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+}
+
+.sk-three-bounce .sk-bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.sk-three-bounce .sk-bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-three-bounce {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes sk-three-bounce {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }
 </style>

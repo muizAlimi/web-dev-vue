@@ -5,7 +5,6 @@ Vue.filter("formatDateRel", value => {
   return formatRelative(new Date(value), new Date());
 });
 
-
 Vue.filter("formatDateForTable", value => {
   return format(new Date(value), "dd-MMM-yyyy HH:mm:ss");
 });
@@ -40,18 +39,18 @@ Vue.filter("moneyFormat", value => {
 });
 
 Vue.filter("nairaAmountFilter", value => {
-  if (value && value !== 0 && value !== ''){
+  if (value && value !== 0 && value !== "") {
     value = value.replace(/,/g, "");
 
     let outgoingAmount = parseFloat(value)
-        .toFixed(2)
-        .toString();
+      .toFixed(2)
+      .toString();
     let indexOfThePoint = outgoingAmount.indexOf(".");
 
     String.prototype.insert = function(index, string) {
       if (index > 0)
         return (
-            this.substring(0, index) + string + this.substring(index, this.length)
+          this.substring(0, index) + string + this.substring(index, this.length)
         );
       return string + this;
     };
@@ -66,9 +65,8 @@ Vue.filter("nairaAmountFilter", value => {
       }
     }
     return answer;
-  }
-  else {
-    return 0
+  } else {
+    return 0;
   }
 });
 

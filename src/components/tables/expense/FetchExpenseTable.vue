@@ -48,10 +48,16 @@
       </template>
 
       <!-- A virtual composite column -->
-      <template v-slot:cell(contact_name)="data">
+      <template v-slot:cell(name)="data">
         <p class="name-field">
-          <span>{{ data.item.first_name }}</span>
-          <span class="bold"> {{ data.item.last_name }}</span>
+          <span class="contact-card">{{
+            `${data.item.category} ${data.item.description}` | getInitials
+          }}</span>
+          <span class="contact-card">{{
+            (data.item.category + " " + data.item.description) | getInitials
+          }}</span>
+          <span>{{ data.item.category }}</span>
+          <span class="bold"> {{ data.item.description }}</span>
         </p>
       </template>
 
@@ -68,15 +74,15 @@
               <i class="mdi mdi-dots-horizontal font-size-18" />
             </template>
 
-            <b-dropdown-item @click="tableAction(data.item, 'approve')">
+            <b-dropdown-item @click="tableAction(data.item, 'confirm')">
               <i class="fas fa-check text-success mr-1" aria-hidden="true" />
-              Approve Company
+              Confirm Expense
             </b-dropdown-item>
 
-            <b-dropdown-item @click="tableAction(data.item, 'reject')">
-              <i class="fas fa-ban text-success mr-1" aria-hidden="true" />
-              Reject Company
-            </b-dropdown-item>
+            <!--            <b-dropdown-item @click="tableAction(data.item, 'reject')">-->
+            <!--              <i class="fas fa-ban text-success mr-1" aria-hidden="true" />-->
+            <!--              Reject Company-->
+            <!--            </b-dropdown-item>-->
           </b-dropdown>
         </p>
       </template>
@@ -119,10 +125,10 @@
 
 <script>
 import { mapState } from "vuex";
-import StoreUtils from "../../utils/BaseUtils/StoreUtils";
+import StoreUtils from "../../../utils/BaseUtils/StoreUtils";
 
 export default {
-  name: "SampleTable",
+  name: "FetchExpenseTable",
   data() {
     return {
       editModalOpen: false,
@@ -140,13 +146,21 @@ export default {
         { key: "index", label: "S/N", sortable: true, class: "text-center" },
 
         // A column that needs custom formatting
-        { key: "company_name", label: "Company Name", sortable: true },
-        { key: "company_size", label: "Company Size", sortable: true },
-        { key: "contact_name", label: "Contact Name", sortable: true },
-        { key: "work_email", label: "Contact Email", sortable: true },
-        { key: "phone_number", label: "Contact Phone", sortable: true },
+        { key: "name", label: "Name", sortable: true },
+        { key: "description", label: "Description", sortable: true },
+        { key: "category", label: "Category", sortable: true },
+        { key: "cost", label: "Cost", sortable: true },
+        { key: "weekOfYear", label: "Week of Year", sortable: true },
         { key: "action", label: "Actions", sortable: true }
       ]
+      // {
+      //   "id": 31,
+      //         : "bought sharwama",
+      //         "datecreated": "Sep 15, 2020 10:22:47 AM",
+      //         "category": "food",
+      //         "cost": "1000.0000",
+      //         "weekOfYear": "Week 37"
+      // }
     };
   },
   computed: {
@@ -171,7 +185,7 @@ export default {
   methods: {
     tableAction(data, action) {
       switch (action) {
-        case "approve":
+        case "confirm":
           // console.log("Approve Request");
           StoreUtils.dispatch("company/approveCompany", {
             businessId: data.business_id,
@@ -188,7 +202,7 @@ export default {
       }
     },
     fetchTableData() {
-      StoreUtils.dispatch("company/fetchCompanies");
+      StoreUtils.dispatch("expense/fetchExpense");
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
@@ -228,4 +242,16 @@ export default {
 /*  border-radius: 4px;*/
 /*  cursor: pointer;*/
 /*}*/
+
+.contact-card {
+  height: 70px;
+  width: 70px;
+  background-color: burlywood;
+  color: white;
+  border-radius: 50%;
+  padding: 10px 10px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
 </style>
